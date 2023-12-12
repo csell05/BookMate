@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>502 High School - Find Schools in Louisville</title>
+    <style>
+        /* Add your styles here */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        main {
+            margin-top: 20px;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #27ae60;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f2f2f2;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Info About Your 502 School</h1>
+    </header>
+
+    <main>
+        <section>
+            <form id="searchForm">
+                <label for="schoolSearch">Search for Schools in Louisville:</label>
+                <input type="text" id="schoolSearch" placeholder="Enter school name...">
+                <button type="button" onclick="searchSchools()">Search</button>
+            </form>
+        </section>
+
+        <section id="searchResults">
+            <!-- Search results will be displayed here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Caleb Sells. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function searchSchools() {
+            // Perform AJAX or fetch request to the server to search for schools
+            // Replace the following line with your actual API endpoint and logic
+            const searchQuery = document.getElementById('schoolSearch').value;
+            const searchResultsSection = document.getElementById('searchResults');
+            
+            // Provided school data with descriptions
+            const providedSchools = [
+                { name: 'Louisville Male High', rating: '4.2/5', description: 'A historic high school with a strong emphasis on sports and community engagement.', enrollment:'1,980' },
+                { name: 'Seneca High School', rating: '2.3/5', description: 'A vibrant high school offering a variety of courses and extracurricular activities.', enrollment:'1,219' },
+                { name: 'DuPont Manual High School', rating: '4.9/5', description: 'A prestigious high school known for its academic excellence and diverse programs.', enrollment:'1,919' },  
+                { name: 'Fairdale High School', rating: '2.5/5', description: ' Fairdale High School is an above average, public, magnet school', enrollment:'1,361'},
+                { name: 'Eastern High School',  rating: '3.5/5', description: 'Eastern High School provides engaging, college preparatory coursework and extracurricular learning experiences that ensure all students graduate with the content knowledge', enrollment:'2,037'},
+                { name: 'Southern High School',  rating: '1.8/5', description: 'Southern High School’s mission is to use a collaborative process focused on learning', enrollment:'1,346'},
+                { name: 'Fern Creek High School',  rating: '2.9/5', description: 'Fern Creek has a IVY league program which provides students with a bright future', enrollment:'1,776'},
+                { name: 'Central High School',  rating: '1.2/5', description: 'Specializing in preparing students for professional careers, Central High School offers many magnet programs', enrollment:'1,248'},
+                { name: 'Moore Traditional High School',  rating: '1.9/5', description: ' Marion C. Moore School ranks worse than 87.5% of high schools in Kentucky', enrollment:'2,725'},
+                { name: 'Jtown High School',  rating: '2.3/5', description: 'The school is a Career Magnet Academy with strong ties to numerous business/education partnerships within the region including the city of Jeffersontown and the Bluegrass Industrial Park community', enrollment:'976'},
+                { name: 'Iroquois High School',  rating: '1.5/5', description: 'Iroquois High School is ranked 187-225th within Kentucky. Students have the opportunity to take Advanced Placement® coursework and exams', enrollment:'1,208'},
+                { name: 'Shawnee High School',  rating: '1.0/5', description: 'The Academy at Shawnee is 1 of 42 high schools in the Jefferson County Public Schools', enrollment:'500'},
+                { name: 'Atherton High School',  rating: '3.8/5', description: ' Atherton High School. Atherton High School is ranked seventh within Kentucky. Students have the opportunity to take Advanced Placement', enrollment:'1,461'},
+                { name: 'Waggener High School',  rating: '1.7/5', description: 'Waggener High School placed in the bottom 50% of all schools in Kentucky for overall test scores (math proficiency is bottom 50%, and reading proficiency is bottom 50%)', enrollment:'836'},
+            ];
+
+            // Display search results
+            searchResultsSection.innerHTML = '<h2>Search Results:</h2>';
+            const matchingSchools = providedSchools.filter(school =>
+                school.name.toLowerCase().includes(searchQuery.toLowerCase())
+            );
+
+            if (matchingSchools.length > 0) {
+                matchingSchools.forEach(school => {
+                    searchResultsSection.innerHTML += `
+                        <p><strong>${school.name}</strong> - ${school.rating}</p>
+                        <p>${school.description}</p> Enrollment-${school.enrollment}
+                        <hr>
+                    `;
+                });
+            } else {
+                searchResultsSection.innerHTML += '<p>No schools found.</p>';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
